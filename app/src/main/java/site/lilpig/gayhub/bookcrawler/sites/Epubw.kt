@@ -22,7 +22,7 @@ class Epubw (context: Context): ResourceSite(context) {
             val captions = it.getElementsByClass("caption").first().getElementsByTag("p")
             val name = captions[0].getElementsByTag("a").text()
             val author = captions[1].getElementsByTag("a").text()
-            context.addBook(Book(name,author,"No Description",imgUrl, arrayOf(url), arrayOf(""),"EpubW"))
+            context.addBook(Book(name,author,"No Description",imgUrl, arrayOf(url), arrayOf("去epubw"),"EpubW"))
         })
     }
 }

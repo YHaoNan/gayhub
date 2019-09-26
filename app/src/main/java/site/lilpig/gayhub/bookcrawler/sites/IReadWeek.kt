@@ -22,7 +22,7 @@ class IReadWeek(context: Context): ResourceSite(context) {
         var downloadUrlDescriptions = Array<String>(btns.size,{
             btns.get(it).text()
         })
-        val img = doc.getElementsByClass("hanghang-shu-content-img").first().child(0).attr("src")
+        val img = SITEURL+doc.getElementsByClass("hanghang-shu-content-img").first().child(0).attr("src")
         val content = doc.getElementsByClass("hanghang-shu-content-font").first().getElementsByTag("p")
         val name = content.get(0).text().split("：")[1]
         val author = content.get(1).text().split("：")[1]
