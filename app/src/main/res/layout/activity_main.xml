@@ -1,31 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_height="match_parent" android:layout_width="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.MainActivity">
-    <LinearLayout
-        android:padding="10dp"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <androidx.cardview.widget.CardView
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/am_search_bar"
-        android:gravity="center_vertical"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        app:contentPaddingLeft="20dp"
+        app:contentPaddingRight="20dp"
+        app:contentPaddingBottom="10dp"
+        app:contentPaddingTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-        <EditText
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@android:color/transparent"
+            android:textSize="14sp"
+            android:paddingTop="5dp"
+            android:drawableRight="@drawable/ic_search_black_24dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
             android:id="@+id/am_edit"
+            android:hint="宁想看啥书"
+            android:imeOptions="actionSearch"
+            android:imeActionLabel="搜索"
+            android:singleLine="true"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-        <Button
-            android:id="@+id/am_search"
-            android:text="搜书"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
-    <ListView
-        android:id="@+id/am_list"
-        android:layout_below="@+id/am_search_bar"
+    <androidx.cardview.widget.CardView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:padding="20dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        app:contentPaddingLeft="20dp"
+        app:contentPaddingRight="20dp"
+        app:contentPaddingBottom="10dp"
+        app:contentPaddingTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</RelativeLayout>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/am_list"
+            android:layout_below="@+id/am_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

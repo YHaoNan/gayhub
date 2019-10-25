@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical" android:paddingLeft="20dp" android:paddingRight="20dp" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
         android:scaleType="centerCrop"
@@ -28,14 +28,7 @@
         android:layout_marginTop="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <TextView
-        android:textSize="10sp"
-        android:id="@+id/ibl_from"
-        android:layout_marginRight="10dp"
-        android:layout_alignBottom="@+id/ibl_img"
-        android:layout_toRightOf="@+id/ibl_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/ibl_description"
         android:layout_marginRight="10dp"
@@ -44,16 +37,7 @@
         android:layout_below="@+id/ibl_author"
         android:layout_marginTop="10dp"
         android:text="Asdfadsfjiasdjfioasdjfioajsdfioajsdiofjaiosdfjiaodsjfioasdjf"
-        android:layout_above="@+id/ibl_downloads"
+        android:layout_alignBottom="@+id/ibl_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <RadioGroup
-        android:id="@+id/ibl_downloads"
-        android:gravity="right"
-        android:layout_toRightOf="@+id/ibl_from"
-        android:layout_alignBottom="@+id/ibl_img"
-        android:orientation="horizontal"
-        android:layout_marginRight="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
 </RelativeLayout>
