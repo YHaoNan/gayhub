@@ -15,10 +15,12 @@ class PanSoSo(context: Context): ResourceSite(context){
             for (pss in psss){
                 val a = pss.getElementsByTag("a").first()
                 val name = a.text()
-                val downloadUrls = arrayOf("http://pansoso.com"+a.attr("href"))
-                val downloadUrlsDes = arrayOf("去盘搜搜")
-                val des = pss.getElementsByClass("des").first().text()
-                context.addBook(Book(name,"Unknown",des,"https://s2.ax1x.com/2019/10/25/KaLEb8.th.jpg",downloadUrls,downloadUrlsDes,"盘搜搜"))
+                if (name.indexOf("pdf")!=-1 || name.indexOf("mobi")!=-1 || name.indexOf("txt") != -1 || name.indexOf("epub") != -1 || name.indexOf("awz3")!=-1){
+                    val downloadUrls = arrayOf("http://pansoso.com"+a.attr("href"))
+                    val downloadUrlsDes = arrayOf("去盘搜搜")
+                    val des = pss.getElementsByClass("des").first().text()
+                    context.addBook(Book(name,"Unknown",des,"",downloadUrls,downloadUrlsDes,"盘搜搜"))
+                }
             }
         }
 

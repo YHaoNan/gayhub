@@ -14,8 +14,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import site.lilpig.gayhub.R
 import site.lilpig.gayhub.bookcrawler.core.Book
+import site.lilpig.gayhub.utils.ResourceSiteUtils
 import site.lilpig.gayhub.utils.similarity
 import java.util.regex.Pattern
 
@@ -28,7 +30,7 @@ class BookListAdapter(val keyword: String, val context: Context, val datas: Arra
     var onItemLongClickListener: AdapterView.OnItemLongClickListener? = null
 
     @Synchronized fun addBook(book: Book){
-        val similarity = book.name.similarity(keyword)
+        val similarity = book.name.similarity(keyword) * ResourceSiteUtils.weightMap[book.from]!!
         Log.i("BookListAdapter","keyword: "+keyword+", bookname: "+book.name+", similarity: "+similarity)
         val i = findPosition(book.name.similarity(keyword))
         Log.i("BookListAdapter",similarityArray.toString())
@@ -70,7 +72,10 @@ class BookListAdapter(val keyword: String, val context: Context, val datas: Arra
         holder.bookName.text = booknameSpannable
         holder.bookDescription.text = book.description
         holder.authorAndFrom.text = "${book.author} 来自: ${book.from}"
-        Glide.with(context).load(book.covorUrl).into(holder.bookCovor)
+        Glide.with(context)
+            .load(book.covorUrl)
+            .apply(RequestOptions().placeholder(R.drawable.nocovor).error(R.drawable.nocovor).centerCrop())
+            .into(holder.bookCovor)
         holder.root.setOnClickListener {
             onItemClickListener?.onItemClick(null,holder.root,position,0)
         }

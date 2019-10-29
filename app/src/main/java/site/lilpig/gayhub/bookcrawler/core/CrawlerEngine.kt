@@ -2,10 +2,7 @@ package site.lilpig.gayhub.bookcrawler.core
 
 import android.os.Handler
 import android.util.Log
-import site.lilpig.gayhub.bookcrawler.sites.Epubw
-import site.lilpig.gayhub.bookcrawler.sites.Hejizhan
-import site.lilpig.gayhub.bookcrawler.sites.IReadWeek
-import site.lilpig.gayhub.bookcrawler.sites.PanSoSo
+import site.lilpig.gayhub.bookcrawler.sites.*
 import java.lang.Exception
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -31,7 +28,9 @@ class CrawlerEngine(private val keyword:String, private val maxWaitTime:Long,pri
         IReadWeek(this),
         Epubw(this),
         PanSoSo(this),
-        Hejizhan(this)
+        Hejizhan(this),
+        Book118(this),
+        Jiumo(this)
     )
 
     val logger = Logger(this.javaClass)

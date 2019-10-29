@@ -1,5 +1,7 @@
 package site.lilpig.gayhub.utils
 
+import java.util.regex.Pattern
+
 
 fun String.similarity(target: String): Int {
     val str = this
@@ -61,3 +63,7 @@ private fun min(one: Int, two: Int, three: Int): Int {
     return if(one<three) one else three
 }
 
+fun String.isMatches(regex: String): Boolean{
+    val pattern = Pattern.compile(regex)
+    return pattern.matcher(this).matches()
+}

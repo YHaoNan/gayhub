@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="40dp"
+    android:paddingBottom="40dp"
     android:background="#eeeeee"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:padding="20dp"
+    <TextView
+        android:scrollbars="vertical"
+        android:textIsSelectable="true"
+        android:id="@+id/apt_text"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:autoLink="all"
+        android:textColor="#000000"
+        android:layout_weight="1"
+        android:textSize="18sp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"/>
 
-        <TextView
-            android:textIsSelectable="true"
-            android:id="@+id/apt_text"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:autoLink="all"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
-    </ScrollView>
 </LinearLayout>
