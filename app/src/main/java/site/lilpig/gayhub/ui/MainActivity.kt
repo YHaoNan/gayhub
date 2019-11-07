@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.decorView.systemUiVisibility =
+             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         am_search_bar.setOnClickListener{
             startActivity(Intent(this,SearchActivity().javaClass))
         }
@@ -48,6 +50,9 @@ class MainActivity : AppCompatActivity() {
                     }).show()
             }else
                 startActivityForResult(Intent(this,CaptureActivity().javaClass),REQUEST_SCANED)
+        }
+        am_setting.setOnClickListener {
+            startActivity(Intent(this,SettingActivity().javaClass))
         }
 
     }

@@ -40,4 +40,11 @@
         android:layout_alignBottom="@+id/ibl_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <ImageView
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:id="@+id/ibl_library"
+        android:src="@drawable/ic_library"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
 </RelativeLayout>

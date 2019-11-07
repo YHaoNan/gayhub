@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".ui.PureTextActivity"/>
         <activity android:name=".ui.SearchActivity"/>
+        <activity android:name=".ui.SettingActivity"/>
     </application>
 
 </manifest>

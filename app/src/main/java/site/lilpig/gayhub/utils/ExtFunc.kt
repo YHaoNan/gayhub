@@ -1,5 +1,7 @@
 package site.lilpig.gayhub.utils
 
+import android.webkit.URLUtil
+import java.net.URL
 import java.util.regex.Pattern
 
 
@@ -67,3 +69,4 @@ fun String.isMatches(regex: String): Boolean{
     val pattern = Pattern.compile(regex)
     return pattern.matcher(this).matches()
 }
+

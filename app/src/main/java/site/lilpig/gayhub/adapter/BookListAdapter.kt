@@ -22,7 +22,7 @@ import site.lilpig.gayhub.utils.similarity
 import java.util.regex.Pattern
 
 class BookListAdapter(val keyword: String, val context: Context, val datas: ArrayList<Book>) : RecyclerView.Adapter<BookViewHolder>(){
-    val similarityArray = ArrayList<Int>()
+    val similarityArray = ArrayList<Float>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         BookViewHolder(LayoutInflater.from(context).inflate(R.layout.item_booklist,parent,false))
 
@@ -30,15 +30,15 @@ class BookListAdapter(val keyword: String, val context: Context, val datas: Arra
     var onItemLongClickListener: AdapterView.OnItemLongClickListener? = null
 
     @Synchronized fun addBook(book: Book){
-        val similarity = book.name.similarity(keyword) * ResourceSiteUtils.weightMap[book.from]!!
-        Log.i("BookListAdapter","keyword: "+keyword+", bookname: "+book.name+", similarity: "+similarity)
-        val i = findPosition(book.name.similarity(keyword))
+        val similarity = if(book.from == "工大图书馆") -1f else book.name.similarity(keyword) * ResourceSiteUtils.weightMap[book.from]!!
+        Log.i("BookListAdapter","keyword: "+keyword+", bookname: "+book.name+", from: "+book.from+", similarity: "+similarity)
+        val i = findPosition(similarity)
         Log.i("BookListAdapter",similarityArray.toString())
         datas.add(i,book)
         notifyItemInserted(i)
         notifyItemRangeChanged(i,datas.size-i)
     }
-    private fun findPosition(v: Int): Int {
+    private fun findPosition(v: Float): Int {
         if (similarityArray.size == 0){
             similarityArray.add(0,v)
             return 0
@@ -72,6 +72,7 @@ class BookListAdapter(val keyword: String, val context: Context, val datas: Arra
         holder.bookName.text = booknameSpannable
         holder.bookDescription.text = book.description
         holder.authorAndFrom.text = "${book.author} 来自: ${book.from}"
+        holder.libraryFlag.visibility = if (book.from == "工大图书馆") View.VISIBLE else View.GONE
         Glide.with(context)
             .load(book.covorUrl)
             .apply(RequestOptions().placeholder(R.drawable.nocovor).error(R.drawable.nocovor).centerCrop())
@@ -92,10 +93,12 @@ class BookViewHolder(val root : View): RecyclerView.ViewHolder(root){
     val bookName: TextView
     val bookCovor: ImageView
     val bookDescription: TextView
+    val libraryFlag: ImageView
     init {
         authorAndFrom = root.findViewById(R.id.ibl_author)
         bookName = root.findViewById(R.id.ibl_name)
         bookCovor = root.findViewById(R.id.ibl_img)
         bookDescription = root.findViewById(R.id.ibl_description)
+        libraryFlag = root.findViewById(R.id.ibl_library)
     }
 }

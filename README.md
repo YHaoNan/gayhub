@@ -1,9 +1,13 @@
-# Gayhub开发计划
-Gayhub是Gayhub群的学习工具，目前目标平台是Android端
+# Lightning Search
+Lightning Search(Gayhub) is a tool can search e-book from internet on Android platfrom.
+
+[To src](https://gitee.com/YHaoNan/gayhub/tree/master/app/src/main)
+
+[Source of the front-end](https://github.com/YHaoNan/lightning-search-fe)
+
+# 闪电搜书
+闪电搜书原Gayhub是一款Android平台下的搜书工具。
 
 [到src](https://gitee.com/YHaoNan/gayhub/tree/master/app/src/main)
 
-## 2019/09/26 开发日志
-> 实现了聚合搜书的多线程书籍爬取框架，实现IReadWeek和EpubW两个站点的爬虫。并添加了一个简陋的UI。完全使用Kotlin实现（刚学Kotlin写的有些飘，虎哥说我写啥都像Java）
-## ver 0.1
-- 聚合搜书
+[前端源码](https://github.com/YHaoNan/lightning-search-fe)

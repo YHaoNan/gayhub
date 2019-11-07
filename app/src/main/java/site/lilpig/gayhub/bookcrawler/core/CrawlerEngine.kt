@@ -30,7 +30,8 @@ class CrawlerEngine(private val keyword:String, private val maxWaitTime:Long,pri
         PanSoSo(this),
         Hejizhan(this),
         Book118(this),
-        Jiumo(this)
+        Jiumo(this),
+        LNTULibrary(this)
     )
 
     val logger = Logger(this.javaClass)
