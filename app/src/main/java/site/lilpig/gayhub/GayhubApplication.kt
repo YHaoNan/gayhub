@@ -8,6 +8,7 @@ var app: GayhubApplication? = null
 class GayhubApplication: Application() {
     private val isbnSearched = mutableSetOf<String>()
     private lateinit var sp: SharedPreferences
+
     override fun onCreate() {
         super.onCreate()
         app = this
@@ -18,5 +19,9 @@ class GayhubApplication: Application() {
 
     fun getLastKeyword() = sp.getString("lastSearch",null)
     fun setLastKeyword(keyword: String) = sp.edit().putString("lastSearch",keyword).commit()
+
+    fun isGetBookFromLNTULibrary() = sp.getBoolean("getBookFromLNTULibrary",false)
+    fun setIsGetBookFromLNTULibrary(bol: Boolean) = sp.edit().putBoolean("getBookFromLNTULibrary",bol).commit()
+
 
 }

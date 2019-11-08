@@ -1,9 +1,16 @@
 package site.lilpig.gayhub.utils
 
+import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 
 object SomeUtil{
-    fun showDialog(title: String,message: String,button1: String,clickListener: DialogInterface.OnClickListener,button2: String, clickListener2: DialogInterface.OnClickListener){
 
+    fun openInBrowser(context: Context, url: String){
+        var uri = Uri.parse(url)
+        var intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
     }
 }

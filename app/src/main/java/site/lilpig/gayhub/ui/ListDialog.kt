@@ -13,7 +13,6 @@ class ListDialog(context: Context): BaseDialog(context){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(listView)
-
     }
 
     override fun show() {

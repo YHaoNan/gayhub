@@ -16,10 +16,13 @@ import kotlinx.android.synthetic.main.activity_search.*
 import site.lilpig.gayhub.R
 import site.lilpig.gayhub.adapter.BookListAdapter
 import site.lilpig.gayhub.app
+import site.lilpig.gayhub.bookcrawler.SomeUtils
 import site.lilpig.gayhub.bookcrawler.core.Book
 import site.lilpig.gayhub.bookcrawler.core.CrawlerEngine
 import site.lilpig.gayhub.bookcrawler.core.OnBookFoundedListener
-
+import site.lilpig.gayhub.bookcrawler.core.ResourceSite
+import site.lilpig.gayhub.bookcrawler.sites.*
+import site.lilpig.gayhub.utils.SomeUtil
 
 
 class SearchActivity : AppCompatActivity(){
@@ -84,17 +87,18 @@ class SearchActivity : AppCompatActivity(){
                 if(adapter != null) {
                     var urls = adapter?.getBook(i)?.downloadUrls!!
                     var descs = adapter?.getBook(i)?.downloadUrlDescriptions!!
-                    var dialog = ListDialog(this)
-                    dialog.datas = descs
-                    dialog.itemClickListener =
-                        AdapterView.OnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
-                            dialog.dismiss()
-                            var uri = Uri.parse(urls[i])
-                            var intent = Intent(Intent.ACTION_VIEW, uri)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                        }
-                    dialog.show()
+                    if (urls.size == 1){
+                        SomeUtil.openInBrowser(this,urls[0])
+                    }else{
+                        var dialog = ListDialog(this)
+                        dialog.datas = descs
+                        dialog.itemClickListener =
+                            AdapterView.OnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+                                dialog.dismiss()
+                                SomeUtil.openInBrowser(this,urls[i])
+                            }
+                        dialog.show()
+                    }
                 }
             }
             as_search_result.adapter = adapter
@@ -112,6 +116,18 @@ class SearchActivity : AppCompatActivity(){
                     as_loading.visibility = View.GONE
                 }
             })
+
+            crawlerEngine?.sites = mutableListOf(
+                IReadWeek(crawlerEngine!!),
+                Epubw(crawlerEngine!!),
+                PanSoSo(crawlerEngine!!),
+                Hejizhan(crawlerEngine!!),
+                Book118(crawlerEngine!!),
+                Jiumo(crawlerEngine!!)
+            )
+            if (app?.isGetBookFromLNTULibrary() ?: false)
+                crawlerEngine?.sites?.add(LNTULibrary(crawlerEngine!!))
+
             crawlerEngine?.start()
             as_loading.visibility = View.VISIBLE
             val view = window.peekDecorView()

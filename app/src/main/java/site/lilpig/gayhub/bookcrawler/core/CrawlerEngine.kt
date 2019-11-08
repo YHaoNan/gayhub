@@ -24,15 +24,7 @@ class CrawlerEngine(private val keyword:String, private val maxWaitTime:Long,pri
         false
     }
 
-    val sites =listOf<ResourceSite>(
-        IReadWeek(this),
-        Epubw(this),
-        PanSoSo(this),
-        Hejizhan(this),
-        Book118(this),
-        Jiumo(this),
-        LNTULibrary(this)
-    )
+    var sites: MutableList<ResourceSite>? = null
 
     val logger = Logger(this.javaClass)
 
@@ -54,7 +46,7 @@ class CrawlerEngine(private val keyword:String, private val maxWaitTime:Long,pri
         },maxWaitTime)
 
         logger.v("Call default task of sites...")
-        for(site in sites){
+        for(site in sites?: mutableListOf()){
             addTask(site.start(),site.callback())
         }
     }
